@@ -6,8 +6,18 @@ from pydantic import BaseModel
 from collections import OrderedDict
 from datetime import datetime, timedelta
 from sklearn.metrics.pairwise import cosine_similarity
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # =============================
 # CONFIGURATION
@@ -165,3 +175,4 @@ def get_analytics():
             "TTL expiration"
         ]
     }
+
